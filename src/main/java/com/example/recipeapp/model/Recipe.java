@@ -4,9 +4,7 @@ import com.example.recipeapp.model.exceptions.ValidationException;
 import com.example.recipeapp.model.validation.Validation;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import static com.example.recipeapp.model.validation.Validation.validateQuantity;
 
@@ -14,13 +12,13 @@ import static com.example.recipeapp.model.validation.Validation.validateQuantity
 public class Recipe {
     private String title;
     private Integer cookingTime;
-    private List<String> cookingSteps = new LinkedList<>();
+    private List<String> steps = new ArrayList<>();
     private List<Ingredient> ingredients = new ArrayList<>();
 
-    public Recipe(String title, Integer cookingTime, List<String> cookingSteps, List<Ingredient> ingredients) throws ValidationException {
+    public Recipe(String title, Integer cookingTime, List<Ingredient> ingredients, ArrayList<String> steps) throws ValidationException {
         this.title = Validation.validateString(title);
         this.cookingTime = validateQuantity(cookingTime);
-        this.cookingSteps = cookingSteps;
+        this.steps = steps;
         this.ingredients = ingredients;
     }
 
