@@ -9,6 +9,8 @@ public interface RecipeService {
 
     Recipe getRecipe(Integer number);
 
+    Map<Integer, Recipe> getRecipeByIngredient(String value);
+
     Recipe editRecipe(Integer id, Recipe recipe);
 
     boolean deleteRecipe(Integer id);
