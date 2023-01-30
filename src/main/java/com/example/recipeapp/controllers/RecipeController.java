@@ -32,6 +32,12 @@ public class RecipeController {
         return ResponseEntity.ok(recipe);
     }
 
+    @GetMapping("/ingredient/{value}")
+    public ResponseEntity<Map<Integer, Recipe>> getRecipeByIngredient(@PathVariable String value) {
+        Map<Integer, Recipe> recipes = recipeService.getRecipeByIngredient(value);
+        return ResponseEntity.ok(recipes);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Recipe> editRecipe(@PathVariable Integer id, @RequestBody Recipe recipe) {
         Recipe modifiedRecipe = recipeService.editRecipe(id, recipe);

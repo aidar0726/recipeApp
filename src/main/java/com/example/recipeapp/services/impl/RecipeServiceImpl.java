@@ -1,5 +1,6 @@
 package com.example.recipeapp.services.impl;
 
+import com.example.recipeapp.model.Ingredient;
 import com.example.recipeapp.model.Recipe;
 import com.example.recipeapp.services.RecipeService;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,21 @@ public class RecipeServiceImpl implements RecipeService {
         } else {
             throw new NoSuchElementException("Рецепт с данным номером не найден!");
         }
+    }
+
+    @Override
+    public Map<Integer, Recipe> getRecipeByIngredient(String value) {
+        Map<Integer, Recipe> newRecipes = new HashMap<>();
+        for (Map.Entry<Integer, Recipe> recipes: recipes.entrySet())
+        {
+            for(Ingredient ingredient : recipes.getValue().getIngredients()) {
+                if(ingredient.getTitleIngredient().equals(value)) {
+                    newRecipes.put(recipes.getKey(),recipes.getValue());
+                }
+            }
+        }
+
+        return newRecipes;
     }
 
     @Override
