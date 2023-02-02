@@ -3,6 +3,7 @@ package com.example.recipeapp.model;
 import com.example.recipeapp.model.exceptions.ValidationException;
 import com.example.recipeapp.model.validation.Validation;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.*;
 
