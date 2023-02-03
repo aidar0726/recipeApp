@@ -18,7 +18,6 @@ import java.util.*;
 public class RecipeServiceImpl implements RecipeService {
     private static Integer id = 0;
     @Value("${name.of.recipes.file}")
-
     public String recipesFileName;
 
     final private FilesService filesService;
@@ -86,18 +85,19 @@ public class RecipeServiceImpl implements RecipeService {
         return recipes;
     }
 
-    @PostConstruct
+    /*@PostConstruct
     private void init(){
         filesService.readFromFile(recipesFileName);
-    }
+    }*/
 
     private void saveToFile() {
+        String json = null;
         try {
-            String json = new ObjectMapper().writeValueAsString(recipes);
-            filesService.saveToFile(json,recipesFileName);
+            json = new ObjectMapper().writeValueAsString(recipes);
         } catch (JacksonException e) {
             throw new RuntimeException(e);
         }
+        filesService.saveToFile(json,recipesFileName);
     }
 
     private void readFromFile() {

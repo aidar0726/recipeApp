@@ -13,8 +13,8 @@ public class FilesServiceImpl implements FilesService {
     @Value("${path.to.data.file}")
     private String dataFilePath;
 
-    @Value("${name.of.recipes.file}")
-    private String dataFileName;
+    /*@Value("${name.of.recipes.file}")
+    private String dataFileName;*/
 
     @Override
     public boolean saveToFile(String json,String dataFileName) {
@@ -23,6 +23,7 @@ public class FilesServiceImpl implements FilesService {
             Files.writeString(Path.of(dataFilePath, dataFileName), json);
             return true;
         } catch (IOException e) {
+            e.printStackTrace();
             return false;
         }
     }
@@ -43,6 +44,7 @@ public class FilesServiceImpl implements FilesService {
             Files.createFile(path);
             return true;
         } catch (IOException e) {
+            e.printStackTrace();
             return false;
         }
     }
